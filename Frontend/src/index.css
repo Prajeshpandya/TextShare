@@ -18,6 +18,32 @@
     margin: 0;
   }
 }
+
+.skeleton_loader {
+  display: flex;
+  flex-direction: column;
+}
+.skeleton_shape {
+  height: 30px;
+  width: 100%;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  animation: skeleton 1.5s infinite;
+}
+
+@keyframes skeleton {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

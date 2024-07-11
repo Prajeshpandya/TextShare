@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
-
+import Loader from "../components/Loader";
 export default function RichText() {
   const editRef = useRef();
 
@@ -21,7 +21,7 @@ export default function RichText() {
     <>
       <div className="flex flex-col items-center mt-10 ">
         <div>
-          {loading && <div>Loading...</div>}
+          {loading && <Loader />}
           <Editor
             licenseKey="gpl"
             apiKey="v55qviqlp7lok1toiftx85zwizysvwoq5yzudtmsfyzjmbo7"
