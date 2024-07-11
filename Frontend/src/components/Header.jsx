@@ -7,7 +7,6 @@ export default function Header() {
   if (lightMode) {
     document.documentElement.style.setProperty("background-color", "white");
     document.documentElement.style.setProperty("color", "black");
-
   }
   if (!lightMode) {
     document.documentElement.style.setProperty("background-color", "black");
@@ -23,11 +22,11 @@ export default function Header() {
     <>
       <nav className="flex-between flex m-5 justify-between items-center">
         <div>
-          <p className="text-red-600 drop-shadow-xl font-mono  text-4xl">
+          <p className="text-red-600 drop-shadow-xl font-mono  text-4xl hover:animate-pulse">
             {" "}
             TextShare
           </p>
-          <p className="opacity-70 ml-10 text-sm ">
+          <p className="opacity-70 ml-10 text-sm hover:animate-pulse ">
             * Easiest Way to Send Text
           </p>
         </div>

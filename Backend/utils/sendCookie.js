@@ -11,8 +11,8 @@ export const sendCookie = (user, res, message, statusCode = 200) => {
     .status(statusCode)
     .cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax", 
-      secure: false,
+      sameSite: "none", 
+      secure: true,
     })
 
 };

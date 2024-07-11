@@ -6,9 +6,6 @@ export default function RichText() {
 
   const [textData, setTextData] = useState("");
   const [loading, setLoading] = useState(true);
-  // const [currentText, setCurrentText] = useState("");
-
-  // setCurrentText(htmlData);
 
   const sendDataHandler = () => {
     const htmlData = editRef.current.getContent();
@@ -68,7 +65,7 @@ export default function RichText() {
         </div> */}
         <div className=" flex flex-col mt-10">
           <button
-            className="bg-gray-500 text-white p-4 hover:opacity-50 rounded-lg w-44 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
+            className="bg-gray-500 mb-36 text-white p-4 hover:opacity-50 rounded-lg w-44 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
             onClick={sendDataHandler}
             disabled={editRef.current < 1 && !editRef.current}
             type="submit"

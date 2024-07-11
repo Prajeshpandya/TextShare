@@ -4,6 +4,8 @@ import App from "./App.jsx";
 import "./index.css";
 import { createContext } from "react";
 
+export const server = `http://localhost:5000`
+
 const AppWrapper = () => {
   const context = createContext();
   const [isLoading, setIsLoading] = useState(false);
