@@ -17,6 +17,7 @@ const schema = new mongoose.Schema(
     },
     expiresAt: {
       type: Date,
+      expires:0,
       default: () => new Date(Date.now() + 4 * 60 * 60 * 1000), // 4 hours from now
     },
     pass: {
