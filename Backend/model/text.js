@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import generateRandomAlphabets from "../utils/generateAlphabate.js";
 const schema = new mongoose.Schema(
   {
     textData: {
@@ -33,6 +33,7 @@ const schema = new mongoose.Schema(
     customUrl: {
       type: String,
       unique: true,
+      default: ()=>generateRandomAlphabets(4),
       required: false,
     },
   },

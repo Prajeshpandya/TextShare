@@ -10,7 +10,7 @@ export const SendText = async (req, res, next) => {
     const { textData, _id, pass, customUrl } = req.body;
 
     if (!textData) return next(new ErrorHandler("Please add text!", 400));
-    if (!textData.length < 1)
+    if (textData.length < 1)
       return next(new ErrorHandler("Blank text is not allowed!", 400));
 
     let user;

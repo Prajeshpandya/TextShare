@@ -1,15 +1,27 @@
 import React, { useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import Loader from "../components/Loader";
+import { sendData } from "../apis/SendData";
+import toast from "react-hot-toast";
 export default function RichText() {
   const editRef = useRef();
 
-  const [textData, setTextData] = useState("");
+  // const [textData, setTextData] = useState("");
   const [loading, setLoading] = useState(true);
 
-  const sendDataHandler = () => {
+  const sendDataHandler = async (e) => {
+    e.preventDefault();
     const htmlData = editRef.current.getContent();
-    setTextData(htmlData);
+    console.log(typeof htmlData);
+    const textData = htmlData;
+    // setTextData(htmlData);
+    try {
+      const { data } = await sendData(textData);
+      toast.success(data.message);
+    } catch (error) {
+      toast.error(data.response.data.message);
+      console.log(error);
+    }
   };
 
   // console.log(textData);
