@@ -15,7 +15,7 @@ export default function RichText() {
     setTextData(htmlData);
   };
 
-  console.log(textData);
+  // console.log(textData);
 
   return (
     <>
