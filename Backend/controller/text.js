@@ -7,9 +7,11 @@ import { QrCode } from "../model/qrCode.js";
 
 export const SendText = async (req, res, next) => {
   try {
-    const { textData, _id, pass , customUrl} = req.body;
+    const { textData, _id, pass, customUrl } = req.body;
 
     if (!textData) return next(new ErrorHandler("Please add text!", 400));
+    if (!textData.length < 1)
+      return next(new ErrorHandler("Blank text is not allowed!", 400));
 
     let user;
 
@@ -29,19 +31,19 @@ export const SendText = async (req, res, next) => {
 
     const qrCodeImage = await generateQrCode(textData);
 
-    const qrCode = await QrCode.create({qrCodeImage})
+    const qrCode = await QrCode.create({ qrCodeImage });
 
     let baseQuery = {
       textData,
       user: user._id,
-      qrCode:qrCode,
+      qrCode: qrCode,
     };
 
     if (pass) {
       baseQuery.pass = pass;
     }
 
-    if(customUrl){
+    if (customUrl) {
       baseQuery.customUrl = customUrl;
     }
 
@@ -89,7 +91,6 @@ export const getTextDataByCustomUrl = async (req, res, next) => {
       success: true,
       data: textDataEntry.textData,
     });
-
   } catch (error) {
     next(error);
   }

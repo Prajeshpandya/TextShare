@@ -9,6 +9,7 @@ export default function GetData() {
           type="number"
           className="p-4 border border-gray-500-600 w-96 "
           placeholder="Enter the Password to access the Data"
+          required
         />
         {/* <div> */}
         <button
