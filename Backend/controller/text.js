@@ -4,6 +4,7 @@ import { sendCookie } from "../utils/sendCookie.js";
 import ErrorHandler from "../middleware/errorhandler.js";
 import { generateQrCode } from "../utils/qrCode.js";
 import { QrCode } from "../model/qrCode.js";
+import he from "he"
 
 export const SendText = async (req, res, next) => {
   try {
@@ -30,8 +31,10 @@ export const SendText = async (req, res, next) => {
 
     const qrCode = await QrCode.create({ qrCodeImage });
 
+    const decodedHtml = he.decode(textData);
+
     let baseQuery = {
-      textData,
+      textData: decodedHtml,
       user: user._id,
       qrCode: qrCode,
     };
@@ -76,9 +79,10 @@ export const getText = async (req, res, next) => {
 
 export const getTextDataByCustomUrl = async (req, res, next) => {
   try {
-    const { customUrl } = req.params;
 
-    const textDataEntry = await Text.findOne({ customUrl });
+    const { customUrl } = req.query;
+
+    const textDataEntry = await Text.findOne (customUrl );
 
     if (!textDataEntry) {
       return next(new ErrorHandler("Text not found", 404));

@@ -6,17 +6,18 @@ import { Toaster } from "react-hot-toast";
 import BackgroundVideo from "./components/background/Video";
 import Pass from "./components/Pass";
 import { UseUserTexts } from "./apis/SendData";
+import { Context } from "./main";
 
 export default function App() {
   const { fetchUserTexts } = UseUserTexts();
+  const{refresh} = useContext(Context)
   useEffect(() => {
     try {
       fetchUserTexts();
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [refresh]);
 
   return (
     <>

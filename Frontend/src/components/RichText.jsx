@@ -4,9 +4,12 @@ import { sendData } from "../apis/SendData";
 import toast from "react-hot-toast";
 import { Context } from "../main";
 
+
 export default function RichText() {
   const editRef = useRef();
-  const { isLoading, setIsLoading, setData, Data } = useContext(Context);
+ 
+  const { isLoading, passwordRef, setIsLoading, setData, Data, setRefresh } =
+    useContext(Context);
 
   const sendDataHandler = async (e) => {
     e.preventDefault();
@@ -15,19 +18,32 @@ export default function RichText() {
       return;
     }
 
+    const _id = localStorage.getItem("userId");
+
     try {
       setIsLoading(true);
       const htmlData = editRef.current.getContent();
       const textData = htmlData;
-      const data = await sendData(textData);
-      
-      localStorage.setItem("userId",data.data.user)
+
+      const baseQuery = {
+        textData,
+      };
+
+      if (_id) {
+        baseQuery._id = _id;
+      }
+
+      const data = await sendData(baseQuery);
+
+      localStorage.setItem("userId", data.data.user);
 
       setData(data.data);
+      setRefresh((prev) => !prev);
+      passwordRef.current.scrollIntoView({ behavior: "smooth" });
       toast.success(data.message || "Data sent successfully");
     } catch (error) {
       toast.error("An error occurred");
-      console.log(error)
+      console.log(error);
       setData([]);
     } finally {
       setIsLoading(false);
@@ -79,6 +95,7 @@ export default function RichText() {
           {isLoading ? "Sending" : "Send"}
         </button>
       </div>
+     
     </div>
   );
 }

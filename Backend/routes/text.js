@@ -9,5 +9,5 @@ router.post("/share",SendText);
 router.get("/gettext",getText);
 router.get("/getusertext",getUserTexts);
 router.get("/:customurl",getTextDataByCustomUrl);
-
+    
 export default router;
