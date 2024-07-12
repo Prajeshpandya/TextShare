@@ -8,10 +8,7 @@ import { QrCode } from "../model/qrCode.js";
 export const SendText = async (req, res, next) => {
   try {
     const { textData, _id, pass, customUrl } = req.body;
-
     if (!textData) return next(new ErrorHandler("Please add text!", 400));
-    if (textData.length < 1)
-      return next(new ErrorHandler("Blank text is not allowed!", 400));
 
     let user;
 
@@ -90,6 +87,33 @@ export const getTextDataByCustomUrl = async (req, res, next) => {
     res.status(200).json({
       success: true,
       data: textDataEntry.textData,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUserTexts = async (req, res, next) => {
+  try {
+    const { _id } = req.query;
+
+    console.log(_id);
+    if (!_id) {
+      return next(new ErrorHandler("Please Provide _id", 400));
+    }
+
+    const texts = await Text.find({ user: _id }).populate(
+      "qrCode",
+      "qrCodeImage"
+    );
+
+    if (!texts) {
+      return next(new ErrorHandler("Data not found", 404));
+    }
+
+    res.status(200).json({
+      success: true,
+      data: texts,
     });
   } catch (error) {
     next(error);

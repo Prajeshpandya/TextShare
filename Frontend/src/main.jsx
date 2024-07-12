@@ -4,20 +4,22 @@ import App from "./App.jsx";
 import "./index.css";
 import { createContext } from "react";
 
-export const server = `http://localhost:5000`
+export const server = `http://localhost:5000`;
+export const Context = createContext();
 
 const AppWrapper = () => {
-  const context = createContext();
   const [isLoading, setIsLoading] = useState(false);
-  const [Data, setData] = useState([]);
+  const [Data, setData] = useState({});
+  const [userData, setUserData] = useState([]);
 
   return (
-    <context.Provider value={{ isLoading, setIsLoading, Data, setData }}>
+    <Context.Provider
+      value={{ isLoading, setIsLoading, Data, setData, userData, setUserData }}
+    >
       <App />
-    </context.Provider>
+    </Context.Provider>
   );
 };
-
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
