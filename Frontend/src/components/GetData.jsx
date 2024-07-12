@@ -3,7 +3,7 @@ import React from "react";
 export default function GetData() {
   const submitHandler = () => {};
   return (
-    <div className="flex flex-col items-center mt-10 justify-center m-auto ">
+    <div className="flex flex-col text-white items-center mt-10 justify-center m-auto ">
       <form className="m-auto" onSubmit={submitHandler}>
         <input
           type="number"
