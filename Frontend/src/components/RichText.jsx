@@ -1,15 +1,22 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { sendData } from "../apis/SendData";
 import toast from "react-hot-toast";
 import { Context } from "../main";
 
-
 export default function RichText() {
   const editRef = useRef();
- 
-  const { isLoading, passwordRef, setIsLoading, setData, Data, setRefresh } =
-    useContext(Context);
+  const formatDataRef = useRef();
+  const [html, setHtml] = useState("");
+
+  const {
+    isLoading,
+    userData,
+    passwordRef,
+    setIsLoading,
+    setData,
+    setRefresh,
+  } = useContext(Context);
 
   const sendDataHandler = async (e) => {
     e.preventDefault();
@@ -23,7 +30,12 @@ export default function RichText() {
     try {
       setIsLoading(true);
       const htmlData = editRef.current.getContent();
-      const textData = htmlData;
+      
+      setHtml(htmlData);
+
+      await new Promise((resolve) => setTimeout(resolve, 0));
+
+      const textData = formatDataRef.current.innerText;
 
       const baseQuery = {
         textData,
@@ -39,8 +51,11 @@ export default function RichText() {
 
       setData(data.data);
       setRefresh((prev) => !prev);
-      passwordRef.current.scrollIntoView({ behavior: "smooth" });
+      if (userData.length > 1) {
+        passwordRef.current.scrollIntoView({ behavior: "smooth" });
+      }
       toast.success(data.message || "Data sent successfully");
+      console.log("formattedData : " + formatDataRef.current.innerText);
     } catch (error) {
       toast.error("An error occurred");
       console.log(error);
@@ -86,6 +101,15 @@ export default function RichText() {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
+
+      <div
+        ref={formatDataRef}
+        dangerouslySetInnerHTML={{
+          __html: html,
+        }}
+        className="hidden"
+      />
+
       <div className="flex flex-col mt-4">
         <button
           className="bg-gray-500 text-white mt-5 mb-16  p-4 rounded-lg w-44 hover:opacity-50 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
@@ -95,7 +119,6 @@ export default function RichText() {
           {isLoading ? "Sending" : "Send"}
         </button>
       </div>
-     
     </div>
   );
 }

@@ -9,7 +9,7 @@ import { Context } from "./main";
 
 export default function App() {
   const { fetchUserTexts } = UseUserTexts();
-  const { refresh } = useContext(Context);
+  const { refresh, userData } = useContext(Context);
   useEffect(() => {
     try {
       fetchUserTexts();
@@ -24,7 +24,7 @@ export default function App() {
       <GetData />
       <RichText />
       <Toaster position="top-center" />
-      <Pass />
+      {userData.length > 1 && <Pass />}
     </>
   );
 }

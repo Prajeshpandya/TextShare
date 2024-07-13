@@ -26,7 +26,6 @@ export default function GetData() {
           required
           onChange={(e) => setPass(e.target.value)}
         />
-        {/* <div> */}
 
         <button
           type="submit"
@@ -34,7 +33,6 @@ export default function GetData() {
         >
           Send
         </button>
-        {/* </div> */}
       </form>
       {getData && (
         <div
