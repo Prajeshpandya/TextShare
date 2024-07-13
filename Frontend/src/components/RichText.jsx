@@ -88,7 +88,7 @@ export default function RichText() {
       />
       <div className="flex flex-col mt-4">
         <button
-          className="bg-gray-500 mt-5 mb-16 text-white p-4 rounded-lg w-44 hover:opacity-50 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-gray-500 mt-5 mb-16  p-4 rounded-lg w-44 hover:opacity-50 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
           onClick={sendDataHandler}
           type="button"
         >

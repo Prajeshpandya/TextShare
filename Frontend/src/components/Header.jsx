@@ -2,16 +2,24 @@ import React, { useState } from "react";
 import { BsBrightnessHigh } from "react-icons/bs";
 
 export default function Header() {
-  
+  let color = "white";
+  const [lightMode, setLightMode] = useState(false);
 
-  let color= "white";
+  if (lightMode) {
+    document.documentElement.style.setProperty("background-color", "white");
+    document.documentElement.style.setProperty("color", "black");
+  }
+  if (!lightMode) {
+    document.documentElement.style.setProperty("background-color", "black");
+    document.documentElement.style.setProperty("color", "white");
+  }
 
-  // if (lightMode) color = "black";
-  // else color = "white";
+  if (lightMode) color = "black";
+  else color = "white";
 
   return (
     <>
-      <nav className="flex-between text-white flex m-5 justify-between items-center">
+      <nav className="flex-between  flex m-5 justify-between items-center">
         <div>
           <p className="text-red-600 drop-shadow-xl font-mono  text-4xl hover:animate-pulse">
             {" "}
@@ -21,7 +29,11 @@ export default function Header() {
             * Easiest Way to Send Text
           </p>
         </div>
-        
+        <div className=" mr-5">
+          <button onClick={() => setLightMode(!lightMode)}>
+            <BsBrightnessHigh size={25} color={color} />
+          </button>
+        </div>
       </nav>
     </>
   );

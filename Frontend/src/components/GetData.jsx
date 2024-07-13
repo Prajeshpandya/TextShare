@@ -3,7 +3,7 @@ import React from "react";
 export default function GetData() {
   const submitHandler = () => {};
   return (
-    <div className="flex flex-col text-white items-center mt-10 justify-center m-auto ">
+    <div className="flex flex-col  items-center mt-10 justify-center m-auto ">
       <form className="m-auto" onSubmit={submitHandler}>
         <input
           type="number"
@@ -14,7 +14,7 @@ export default function GetData() {
         {/* <div> */}
         <button
           type="submit"
-          className="bg-gray-500 mt-9 border-blue-400-600 border hover:opacity-50  text-white p-4  w-44 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-gray-500 mt-9 border-blue-400-600 border hover:opacity-50   p-4  w-44 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Send
         </button>

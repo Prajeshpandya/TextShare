@@ -7,7 +7,7 @@ export default function Pass() {
   const { userData } = useContext(Context);
   const dangerRef = useRef();
 
-  const {passwordRef} =useContext(Context)
+  const { passwordRef } = useContext(Context);
 
   const userObject =
     userData && userData.length > 0
@@ -43,11 +43,18 @@ export default function Pass() {
         Show QR
       </button>
 
-      <p ref={passwordRef} className="border-2 mb-8  border-red-700 p-8  text-white text-4xl ">{userObject?.undefined?.pass}</p>
-      <p  className="border-2 mb-8  border-red-700 p-8  text-white text-4xl ">{userObject?.undefined?.customUrl}</p>
+      <p
+        ref={passwordRef}
+        className="border-2 mb-8  border-red-700 p-8   text-4xl "
+      >
+        {userObject?.undefined?.pass}
+      </p>
+      <p className="border-2 mb-8  border-red-700 p-8   text-4xl ">
+        {userObject?.undefined?.customUrl}
+      </p>
       {showQr && <img src={QRCodeImageSrc} alt="QR" />}
 
-      <div className="text-white w-1/2 mt-10 p-4 border rounded">
+      <div className=" w-1/2 mt-10 p-4 border rounded">
         <div
           ref={dangerRef}
           dangerouslySetInnerHTML={{
