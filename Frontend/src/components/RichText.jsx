@@ -51,7 +51,7 @@ export default function RichText() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-10">
+    <div className="flex flex-col items-center mt-5">
       <Editor
         licenseKey="gpl"
         apiKey="v55qviqlp7lok1toiftx85zwizysvwoq5yzudtmsfyzjmbo7"
@@ -88,7 +88,7 @@ export default function RichText() {
       />
       <div className="flex flex-col mt-4">
         <button
-          className="bg-gray-500 mt-5 mb-16  p-4 rounded-lg w-44 hover:opacity-50 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
+          className="bg-gray-500 text-white mt-5 mb-16  p-4 rounded-lg w-44 hover:opacity-50 disabled:bg-slate-600 disabled:cursor-not-allowed disabled:opacity-50"
           onClick={sendDataHandler}
           type="button"
         >

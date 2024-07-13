@@ -45,11 +45,11 @@ export default function Pass() {
 
       <p
         ref={passwordRef}
-        className="border-2 mb-8  border-red-700 p-8   text-4xl "
+        className="border-2 mb-8  rounded-xl w-22 text-center  p-4    text-2xl "
       >
         {userObject?.undefined?.pass}
       </p>
-      <p className="border-2 mb-8  border-red-700 p-8   text-4xl ">
+      <p className="border-2 mb-8  rounded-xl w-22 text-center  p-4    text-2xl ">
         {userObject?.undefined?.customUrl}
       </p>
       {showQr && <img src={QRCodeImageSrc} alt="QR" />}

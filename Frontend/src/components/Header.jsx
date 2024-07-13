@@ -8,10 +8,13 @@ export default function Header() {
   if (lightMode) {
     document.documentElement.style.setProperty("background-color", "white");
     document.documentElement.style.setProperty("color", "black");
+    document.documentElement.style.setProperty("border-color", "black");
   }
   if (!lightMode) {
     document.documentElement.style.setProperty("background-color", "black");
     document.documentElement.style.setProperty("color", "white");
+    document.documentElement.style.setProperty("border-color", "white");
+
   }
 
   if (lightMode) color = "black";
