@@ -14,11 +14,12 @@ const AppWrapper = () => {
   const [Data, setData] = useState({});
   const [userData, setUserData] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [getData, setGetData] = useState("");
 
 
   return (
     <Context.Provider
-      value={{ isLoading, passwordRef, setIsLoading, Data, setData, userData, setUserData,refresh, setRefresh }}
+      value={{ isLoading, passwordRef,getData, setGetData, setIsLoading, Data, setData, userData, setUserData,refresh, setRefresh }}
     >
       <App />
     </Context.Provider>

@@ -30,13 +30,13 @@ app.use(
 
 //using Routes
 app.use("/text", TextRouter);
+app.use("/", (req, res, next) => {
+  res.send("API is Working with /api/v1 !");
+});
 
 //using error middleware
 app.use(errorMiddleWare);
 
-app.use("/", (res) => {
-  res.send("API is Working with /api/v1 !");
-});
 
 app.listen(port, () => {
   console.log(`server is working on ${port}`);

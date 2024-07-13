@@ -4,16 +4,12 @@ import { useContext } from "react";
 
 export const sendData = async (textData) => {
   console.log("API CALLED ");
-  const { data } = await axios.post(
-    `${server}/text/share`,
-     textData ,
-    {
-      headers: {
-        "Content-Type": "Application/json",
-      },
-      withCredentials: true,
-    }
-  );
+  const { data } = await axios.post(`${server}/text/share`, textData, {
+    headers: {
+      "Content-Type": "Application/json",
+    },
+    withCredentials: true,
+  });
 
   return data;
 };
@@ -44,4 +40,16 @@ export const UseUserTexts = () => {
   };
 
   return { fetchUserTexts };
+};
+
+export const getDataByPass = async (pass) => {
+  const { data } = await axios.get(`${server}/text/getText`, {
+    params: { pass },
+    headers: {
+      "Content-Type": "Application/json",
+    },
+    withCredentials: true,
+  });
+
+  return data;
 };

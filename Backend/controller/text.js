@@ -4,7 +4,7 @@ import { sendCookie } from "../utils/sendCookie.js";
 import ErrorHandler from "../middleware/errorhandler.js";
 import { generateQrCode } from "../utils/qrCode.js";
 import { QrCode } from "../model/qrCode.js";
-import he from "he"
+import he from "he";
 
 export const SendText = async (req, res, next) => {
   try {
@@ -62,15 +62,15 @@ export const SendText = async (req, res, next) => {
 
 export const getText = async (req, res, next) => {
   try {
-    const { pass } = req.body;
+    const { pass } = req.query;
 
     if (!pass) return new ErrorHandler("Please enter the Password", 400);
 
-    const textData = await Text.findOne({ pass });
+    const textData = await Text.find({ pass });
 
     res.status(200).json({
       success: true,
-      textData,
+      textData: textData[0]?.textData,
     });
   } catch (error) {
     next(error);
@@ -79,10 +79,14 @@ export const getText = async (req, res, next) => {
 
 export const getTextDataByCustomUrl = async (req, res, next) => {
   try {
+    const { customurl } = req.params;
 
-    const { customUrl } = req.query;
-
-    const textDataEntry = await Text.findOne (customUrl );
+    if(!customurl){
+      return next(new ErrorHandler("Please Provide CustomUrl"))
+    }
+    console.log("customUrl :" + customurl);
+    
+    const textDataEntry = await Text.findOne({customUrl:customurl });
 
     if (!textDataEntry) {
       return next(new ErrorHandler("Text not found", 404));
