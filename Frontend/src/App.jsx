@@ -4,19 +4,23 @@ import Header from "./components/Header";
 import GetData from "./components/GetData";
 import { Toaster } from "react-hot-toast";
 import Pass from "./components/Pass";
-import { UseUserTexts } from "./apis/SendData";
-import { Context } from "./main";
+// import { UseUserTexts } from "./apis/SendData";
+// import { Context } from "./main";
 
 export default function App() {
-  const { fetchUserTexts } = UseUserTexts();
-  const { refresh, userData } = useContext(Context);
-  useEffect(() => {
-    try {
-      fetchUserTexts();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [refresh]);
+  // const { fetchUserTexts } = UseUserTexts();
+  // const { refresh, userData } = useContext(Context);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       await fetchUserTexts();
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [refresh, userData]);
 
   return (
     <>
@@ -24,7 +28,7 @@ export default function App() {
       <GetData />
       <RichText />
       <Toaster position="top-center" />
-      {userData.length > 1 && <Pass />}
+      <Pass />
     </>
   );
 }

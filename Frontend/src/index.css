@@ -43,6 +43,20 @@
   }
 }
 
+
+#btn:hover > button{
+    display: block;
+    background-color: black;
+}
+#btnPass:hover > button{
+    display: block;
+    background-color: black;
+}
+
+#btnData:hover >button{
+  display: block;
+  background-color: black;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

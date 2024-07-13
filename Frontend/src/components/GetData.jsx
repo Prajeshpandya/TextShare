@@ -5,6 +5,13 @@ import { Context } from "../main";
 export default function GetData() {
   const [pass, setPass] = useState("");
   const { getData, setGetData } = useContext(Context);
+  const [isCopiedData, setIsCopiedData] = useState(false);
+
+  const copyText = async (data) => {
+    await window.navigator.clipboard.writeText(data);
+    setIsCopiedData(true);
+    setTimeout(() => setIsCopiedData(false), 500);
+  };
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -34,13 +41,23 @@ export default function GetData() {
           Send
         </button>
       </form>
+      {/* {getData && (
+        <div className="mt-11 p-4 border border-white font-mono">{getData}</div>
+      )} */}
+
       {getData && (
-        <div
-          dangerouslySetInnerHTML={{
-            __html: getData,
-          }}
-          className="mt-11 font-mono"
-        ></div>
+        <button
+          id="btnData"
+          className="border-2 mb-8 mt-10 justify-center items-center  rounded-xl w-40 text-center  p-4  text-xl"
+        >
+          {getData}
+          <p
+            className=" text-sm  hidden relative text-white "
+            onClick={() => copyText(getData)}
+          >
+            {isCopiedData ? "Copied" : "Copy"}
+          </p>
+        </button>
       )}
 
       <p className="mt-11 font-customFont">OR</p>
