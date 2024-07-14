@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Context, server } from "../main";
 import { useContext } from "react";
-import { useParams } from "react-router-dom";
 
 export const sendData = async (textData) => {
   console.log("API CALLED ");

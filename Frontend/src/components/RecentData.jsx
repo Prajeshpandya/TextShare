@@ -31,33 +31,53 @@ export default function RecentData({ data }) {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <div id="btnPass" className="border-2 flex flex-col mb-8 justify-center items-center rounded-xl w-80 text-center p-4 text-2xl">
-        <p>{data.pass}</p>
+    <div className="flex flex-row items-center">
+      
+      <div
+        id="btnPass"
+        className="border-2 mr-4 flex flex-col mb-8 justify-center items-center rounded-xl w-48 text-center p-4 text-2xl"
+      >
+        <p>Pass: {data.pass}</p>
         <button
-          ref={passwordRef}
           className="text-sm hidden relative text-white"
           onClick={() => copyText(data.pass)}
         >
           {isCopied ? "Copied" : "Copy"}
         </button>
       </div>
-      <div className="text-sm relative text-white">
-        <p>You can also access this with the URL:</p>
-      </div>
-      <div id="btn" className="border-2 mb-8 flex flex-col justify-center items-center rounded-xl w-80 text-center p-4 text-2xl">
-        <p>{data.customUrl}</p>
+
+      <div
+        id="btn"
+        className="border-2 mb-8 mr-4  flex flex-col justify-center items-center rounded-xl w-fit text-center p-4 text-sm"
+      >
+        <p className="text-base">You can also access this with the URL:</p>
+        <p className="text-lg">
+          http://localhost:5173/customurl/{data.customUrl}
+        </p>
         <button
           className="text-sm hidden relative text-white"
-          onClick={() => copyText(data.customUrl)}
+          onClick={() =>
+            copyText(`http://localhost:5173/customurl/${data.customUrl}`)
+          }
         >
           {isCopied ? "Copied" : "Copy"}
         </button>
       </div>
-      {showQr && <img src={QRCodeImageSrc} alt="QR" />}
-      <div id="btnData"  onClick={() => copyText(data.textData)}  className="flex flex-col w-1/2 mt-10 p-4 border rounded">
-        <div>{data.textData}</div>
-        <button className="text-sm hidden relative text-white">{isCopied ? "Copied" : "Copy"}</button>
+      {showQr && (
+        <img className="w-28 mr-4 mb-6 h-28" src={QRCodeImageSrc} alt="QR" />
+      )}
+      <div
+        id="btnData"
+        onClick={() => copyText(data.textData)}
+        className="flex flex-col p-4 border rounded"
+      >
+        {/* <div>{data.textData}</div> */}
+        <div ref={passwordRef}>
+          <textarea className="text-white" defaultValue={data.textData} readOnly></textarea>
+        </div>
+        <button className="text-sm hidden relative text-white">
+          {isCopied ? "Copied" : "Copy"}
+        </button>
       </div>
     </div>
   );
