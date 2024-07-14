@@ -16,7 +16,6 @@ const AppWrapper = () => {
   const [refresh, setRefresh] = useState(false);
   const [getData, setGetData] = useState("");
 
-
   return (
     <Context.Provider
       value={{ isLoading, passwordRef,getData, setGetData, setIsLoading, Data, setData, userData, setUserData,refresh, setRefresh }}

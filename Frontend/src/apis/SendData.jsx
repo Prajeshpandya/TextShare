@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Context, server } from "../main";
 import { useContext } from "react";
+import { useParams } from "react-router-dom";
 
 export const sendData = async (textData) => {
   console.log("API CALLED ");
@@ -45,6 +46,19 @@ export const UseUserTexts = () => {
 export const getDataByPass = async (pass) => {
   const { data } = await axios.get(`${server}/text/getText`, {
     params: { pass },
+    headers: {
+      "Content-Type": "Application/json",
+    },
+    withCredentials: true,
+  });
+
+  return data;
+};
+
+export const getDataByCustomUrl = async (param) => {
+
+
+  const { data } = await axios.get(`${server}/text/${param}`, {
     headers: {
       "Content-Type": "Application/json",
     },

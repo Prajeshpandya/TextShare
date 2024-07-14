@@ -5,6 +5,7 @@ import GetData from "./components/GetData";
 import { Toaster } from "react-hot-toast";
 import Pass from "./components/Pass";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CostumUrl from "./components/CostumUrl";
 export default function App() {
   return (
     <>
@@ -21,6 +22,7 @@ export default function App() {
               </>
             }
           />
+          <Route path="/customurl/:customUrl" element={<CostumUrl />} />
         </Routes>
       </Router>
       <Toaster position="top-center" />
