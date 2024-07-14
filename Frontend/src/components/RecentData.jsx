@@ -32,7 +32,7 @@ export default function RecentData({ data }) {
 
   return (
     <div className="flex flex-col items-center">
-      <div id="btnPass" className="border-2 mb-8 justify-center items-center rounded-xl w-80 text-center p-4 text-2xl">
+      <div id="btnPass" className="border-2 flex flex-col mb-8 justify-center items-center rounded-xl w-80 text-center p-4 text-2xl">
         <p>{data.pass}</p>
         <button
           ref={passwordRef}
@@ -45,7 +45,7 @@ export default function RecentData({ data }) {
       <div className="text-sm relative text-white">
         <p>You can also access this with the URL:</p>
       </div>
-      <div id="btn" className="border-2 mb-8 justify-center items-center rounded-xl w-80 text-center p-4 text-2xl">
+      <div id="btn" className="border-2 mb-8 flex flex-col justify-center items-center rounded-xl w-80 text-center p-4 text-2xl">
         <p>{data.customUrl}</p>
         <button
           className="text-sm hidden relative text-white"
@@ -55,7 +55,7 @@ export default function RecentData({ data }) {
         </button>
       </div>
       {showQr && <img src={QRCodeImageSrc} alt="QR" />}
-      <div id="btnData" onClick={() => copyText(data.textData)}  className="w-1/2 mt-10 p-4 border rounded">
+      <div id="btnData"  onClick={() => copyText(data.textData)}  className="flex flex-col w-1/2 mt-10 p-4 border rounded">
         <div>{data.textData}</div>
         <button className="text-sm hidden relative text-white">{isCopied ? "Copied" : "Copy"}</button>
       </div>
