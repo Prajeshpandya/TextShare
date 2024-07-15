@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getDataByCustomUrl } from "../apis/SendData";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function CostumUrl() {
   const [getData, setGetData] = useState("");
@@ -15,8 +16,10 @@ export default function CostumUrl() {
         const data = await getDataByCustomUrl(param);
         console.log("data: " + data);
         setGetData(data);
+        toast.success(data.message || "Data Fetched Successfully!");
       } catch (error) {
         console.error("Error fetching data: ", error);
+        toast.error(error.response.data.message || "Something Went Wrong !");
       }
     };
 
@@ -25,7 +28,5 @@ export default function CostumUrl() {
 
   console.log(getData);
 
-  return <div>
-    {getData.data}
-  </div>;
+  return <div>{getData.data}</div>;
 }
