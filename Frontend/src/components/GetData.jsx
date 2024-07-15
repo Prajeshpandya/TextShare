@@ -23,7 +23,7 @@ export default function GetData() {
     }
   };
   return (
-    <div className="flex flex-col  items-center mt-10 justify-center m-auto ">
+    <div className="flex flex-col  items-center -mt-10 justify-center m-auto ">
       <form className="m-auto" onSubmit={submitHandler}>
         <input
           type="number"
@@ -41,9 +41,6 @@ export default function GetData() {
           Send
         </button>
       </form>
-      {/* {getData && (
-        <div className="mt-11 p-4 border border-white font-mono">{getData}</div>
-      )} */}
 
       {getData && (
         <button
