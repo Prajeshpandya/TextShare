@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 import { createContext } from "react";
 
-export const server = `http://localhost:5000`;
+export const server = `https://textshare-4p8m.onrender.com`;
 export const Context = createContext();
 
 const AppWrapper = () => {
