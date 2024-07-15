@@ -64,13 +64,13 @@ export const getText = async (req, res, next) => {
   try {
     const { pass } = req.query;
 
-    if (!pass) return new ErrorHandler("Please enter the Password", 400);
+    if (!pass) return next(new ErrorHandler("Please enter the Password", 400));
 
     const textData = await Text.find({ pass });
 
-    if (!textData.length) return new ErrorHandler("Incorrect Password !", 400);
+    if (!textData.length)
+      return next(new ErrorHandler("Incorrect Password !", 400));
 
-    
     res.status(200).json({
       success: true,
       textData: textData[0]?.textData,
@@ -84,12 +84,12 @@ export const getTextDataByCustomUrl = async (req, res, next) => {
   try {
     const { customurl } = req.params;
 
-    if(!customurl){
-      return next(new ErrorHandler("Please Provide CustomUrl"))
+    if (!customurl) {
+      return next(new ErrorHandler("Please Provide CustomUrl"));
     }
     console.log("customUrl :" + customurl);
-    
-    const textDataEntry = await Text.findOne({customUrl:customurl });
+
+    const textDataEntry = await Text.findOne({ customUrl: customurl });
 
     if (!textDataEntry) {
       return next(new ErrorHandler("Text not found", 404));
