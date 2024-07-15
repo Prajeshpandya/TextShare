@@ -68,7 +68,7 @@ export const getText = async (req, res, next) => {
 
     const textData = await Text.find({ pass });
 
-    if (!textData) return new ErrorHandler("Incorrect Password !", 400);
+    if (!textData.length) return new ErrorHandler("Incorrect Password !", 400);
 
     
     res.status(200).json({
