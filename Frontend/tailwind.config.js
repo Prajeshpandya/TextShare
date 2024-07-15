@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         customFont: ["Playwrite CU", "cursive"],
       },
+      screens: {
+        'mobile': { 'raw': '(max-width: 500px)' },
+        // => @media (min-height: 800px) { ... }
+      }
     },
   },
   plugins: [],

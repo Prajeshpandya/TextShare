@@ -23,12 +23,12 @@ export default function GetData() {
     }
   };
   return (
-    <div className="flex flex-col  items-center -mt-10 justify-center m-auto ">
-      <form className="m-auto" onSubmit={submitHandler}>
+    <div className="flex flex-col mobile:mt-10  items-center -mt-10  justify-center m-auto ">
+      <form className="m-auto mobile:items-center mobile:justify-center mobile:flex mobile:flex-col" onSubmit={submitHandler}>
         <input
           type="number"
           value={pass}
-          className="font-serif text-white p-4 border border-gray-500-600 w-96 "
+          className="font-serif text-white p-4 border border-gray-500-600  w-96 "
           placeholder="Enter the Password to access the Data"
           required
           onChange={(e) => setPass(e.target.value)}

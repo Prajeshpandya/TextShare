@@ -66,7 +66,7 @@ export default function RichText() {
   };
 
   return (
-    <div className="flex flex-col items-center mt-5">
+    <div className="flex mobile:w-full flex-col items-center mt-5">
       <Editor
         licenseKey="gpl"
         apiKey='03wg5i7qqzyeiw40en1l0b18mt1kyp3c0bbf399z8y5d25tm'
