@@ -18,17 +18,20 @@ export default function GetData() {
     e.preventDefault();
     try {
       const data = await getDataByPass(pass);
-      
+
       setGetData(data.textData);
       toast.success(data.message || "Data Fetched successfully");
     } catch (error) {
       console.log(error);
-      toast.error("An error occurred");
+      toast.error(error.response.data.message || "An error occurred");
     }
   };
   return (
     <div className="flex flex-col mobile:mt-10  items-center -mt-10  justify-center m-auto ">
-      <form className="m-auto mobile:items-center mobile:justify-center mobile:flex mobile:flex-col" onSubmit={submitHandler}>
+      <form
+        className="m-auto mobile:items-center mobile:justify-center mobile:flex mobile:flex-col"
+        onSubmit={submitHandler}
+      >
         <input
           type="number"
           value={pass}
