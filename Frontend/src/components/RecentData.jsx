@@ -60,12 +60,14 @@ export default function RecentData({ data }) {
         >
           <p className="text-base">You can also access this with the URL:</p>
           <p className="text-lg">
-            http://localhost:5173/customurl/{data.customUrl}
+            https://textshare-1.onrender.com/customurl/{data.customUrl}
           </p>
           <button
             className="text-sm hidden relative text-white"
             onClick={() =>
-              copyText(`http://localhost:5173/customurl/${data.customUrl}`)
+              copyText(
+                `https://textshare-1.onrender.com/customurl/${data.customUrl}`
+              )
             }
           >
             {isCopied ? "Copied" : "Copy"}
