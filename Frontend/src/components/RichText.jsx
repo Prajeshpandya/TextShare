@@ -30,7 +30,7 @@ export default function RichText() {
     try {
       setIsLoading(true);
       const htmlData = editRef.current.getContent();
-      
+
       setHtml(htmlData);
 
       await new Promise((resolve) => setTimeout(resolve, 0));
@@ -57,7 +57,7 @@ export default function RichText() {
       toast.success(data.message || "Data sent successfully");
       console.log("formattedData : " + formatDataRef.current.innerText);
     } catch (error) {
-      toast.error("An error occurred");
+      toast.error(error.response.data.message || "An error occurred");
       console.log(error);
       setData([]);
     } finally {
@@ -69,7 +69,7 @@ export default function RichText() {
     <div className="flex mobile:w-full flex-col items-center mt-5">
       <Editor
         licenseKey="gpl"
-        apiKey='03wg5i7qqzyeiw40en1l0b18mt1kyp3c0bbf399z8y5d25tm'
+        apiKey="03wg5i7qqzyeiw40en1l0b18mt1kyp3c0bbf399z8y5d25tm"
         onInit={(_evt, editor) => {
           editRef.current = editor;
         }}
