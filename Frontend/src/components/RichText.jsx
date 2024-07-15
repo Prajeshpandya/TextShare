@@ -69,7 +69,7 @@ export default function RichText() {
     <div className="flex flex-col items-center mt-5">
       <Editor
         licenseKey="gpl"
-        apiKey="v55qviqlp7lok1toiftx85zwizysvwoq5yzudtmsfyzjmbo7"
+        apiKey='03wg5i7qqzyeiw40en1l0b18mt1kyp3c0bbf399z8y5d25tm'
         onInit={(_evt, editor) => {
           editRef.current = editor;
         }}
