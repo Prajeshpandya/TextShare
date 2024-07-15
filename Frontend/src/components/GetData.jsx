@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { getDataByPass } from "../apis/SendData";
 import { Context } from "../main";
+import toast from "react-hot-toast";
 
 export default function GetData() {
   const [pass, setPass] = useState("");
@@ -17,9 +18,12 @@ export default function GetData() {
     e.preventDefault();
     try {
       const data = await getDataByPass(pass);
+      
       setGetData(data.textData);
+      toast.success(data.message || "Data Fetched successfully");
     } catch (error) {
       console.log(error);
+      toast.error("An error occurred");
     }
   };
   return (
