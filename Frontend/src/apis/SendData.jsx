@@ -43,15 +43,21 @@ export const UseUserTexts = () => {
 };
 
 export const getDataByPass = async (pass) => {
-  const { data } = await axios.get(`${server}/text/getText`, {
-    params: { pass },
-    headers: {
-      "Content-Type": "Application/json",
-    },
-    withCredentials: true,
-  });
-
-  return data;
+  try {
+    
+    const { data } = await axios.get(`${server}/text/getText`, {
+      params: { pass },
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
+  
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error;
+  }
 };
 
 export const getDataByCustomUrl = async (param) => {
