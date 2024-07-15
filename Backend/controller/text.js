@@ -70,7 +70,7 @@ export const getText = async (req, res, next) => {
 
     if (!textData) return new ErrorHandler("Incorrect Password !", 400);
 
-
+    
     res.status(200).json({
       success: true,
       textData: textData[0]?.textData,
