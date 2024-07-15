@@ -32,6 +32,7 @@ app.use(
 app.use("/text", TextRouter);
 app.use("/", (req, res, next) => {
   res.send("API is Working with /api/v1 !");
+  res.json("All set!!")
 });
 
 //using error middleware
