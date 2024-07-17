@@ -119,23 +119,27 @@ export default function RichText() {
         {showCustom ? "Hide" : "Advance Features"}
       </button>
       {showCustom && (
-        <div>
+        <div className="gap-4 flex" >
           <input
             onChange={(e) => setCustomUrl(e.target.value)}
             value={customUrl}
             type="text"
-            className="font-serif text-white p-4 border border-gray-500-600  w-96 "
+            className="font-serif h-14 relative top-6 text-white p-4 border border-gray-500-600  w-96 "
             placeholder="Enter the CutomUrl if you want to specify"
             required
           />
+          <div className="flex flex-col">
+          <label htmlFor="c">Custom Data Expiry</label>
           <input
+          id="c"
             onChange={(e) => setExpiresAt(e.target.value)}
             value={expiresAt}
             type="datetime-local"
-            className="font-serif text-white p-4 border border-gray-500-600  w-96 "
-            placeholder="Enter the CutomUrl if you want to specify"
+            className="font-serif h-14 text-white p-4 border border-gray-500-600  w-96 "
+            placeholder="Custom Data Expiry"
             required
           />
+          </div>
         </div>
       )}
       <div
