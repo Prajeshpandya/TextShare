@@ -79,7 +79,9 @@ export default function RichText() {
     }
   };
 
-  const size = isMobile ? 1 : 0.5;
+  const width = isMobile ? 0.8 : 0.5;
+  
+
   return (
     <div className="flex mobile:w-full flex-col items-center mt-5">
       <Editor
@@ -89,8 +91,8 @@ export default function RichText() {
           editRef.current = editor;
         }}
         init={{
-          height: size * window.innerHeight,
-          width: size * window.innerWidth,
+          height: 0.5 * window.innerHeight,
+          width: width * window.innerWidth,
           menubar: false,
           plugins: [
             "advlist",
