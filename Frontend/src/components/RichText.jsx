@@ -3,8 +3,11 @@ import { Editor } from "@tinymce/tinymce-react";
 import { sendData } from "../apis/SendData";
 import toast from "react-hot-toast";
 import { Context } from "../main";
+import { useMediaQuery } from "react-responsive";
 
 export default function RichText() {
+  const isMobile = useMediaQuery({ maxWidth: 500 });
+
   const editRef = useRef();
   const formatDataRef = useRef();
   const [html, setHtml] = useState("");
@@ -24,7 +27,7 @@ export default function RichText() {
   const sendDataHandler = async (e) => {
     e.preventDefault();
     if (!editRef.current || !editRef.current.getContent().trim()) {
-      toast.error("Editor content is empty");
+      toast.error("Please Add Some Text!");
       return;
     }
 
@@ -76,6 +79,7 @@ export default function RichText() {
     }
   };
 
+  const size = isMobile ? 2 : 0.5;
   return (
     <div className="flex mobile:w-full flex-col items-center mt-5">
       <Editor
@@ -85,8 +89,8 @@ export default function RichText() {
           editRef.current = editor;
         }}
         init={{
-          height: 0.5 * window.innerHeight,
-          width: 0.5 * window.innerWidth,
+          height: size * window.innerHeight,
+          width: size * window.innerWidth,
           menubar: false,
           plugins: [
             "advlist",
@@ -119,7 +123,7 @@ export default function RichText() {
         {showCustom ? "Hide" : "Advance Features"}
       </button>
       {showCustom && (
-        <div className="gap-4 flex mobile:flex-col" >
+        <div className="gap-4 flex mobile:flex-col">
           <input
             onChange={(e) => setCustomUrl(e.target.value)}
             value={customUrl}
@@ -129,16 +133,18 @@ export default function RichText() {
             required
           />
           <div className="flex flex-col">
-          <label htmlFor="c">Custom Data Expiry</label>
-          <input
-          id="c"
-            onChange={(e) => setExpiresAt(e.target.value)}
-            value={expiresAt}
-            type="datetime-local"
-            className="font-serif mobile:w-full h-14 text-white p-4 border border-gray-500-600  w-96 "
-            placeholder="Custom Data Expiry"
-            required
-          />
+            <label className="mobile:mt-4 " htmlFor="c">
+              Custom Data Expiry
+            </label>
+            <input
+              id="c"
+              onChange={(e) => setExpiresAt(e.target.value)}
+              value={expiresAt}
+              type="datetime-local"
+              className="font-serif mobile:w-full h-14 text-white p-4 border border-gray-500-600  w-96 "
+              placeholder="Custom Data Expiry"
+              required
+            />
           </div>
         </div>
       )}

@@ -35,7 +35,7 @@ export default function GetData() {
         <input
           type="number"
           value={pass}
-          className="font-serif text-white p-4 border border-gray-500-600  w-96 "
+          className="font-serif text-white p-4 mobile:w-full border border-gray-500-600  w-96 "
           placeholder="Enter the Password to access the Data"
           required
           onChange={(e) => setPass(e.target.value)}
