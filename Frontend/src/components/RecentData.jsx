@@ -33,7 +33,7 @@ export default function RecentData({ data }) {
   return (
     <>
       
-      <div className="flex flex-row items-center">
+      <div className="flex flex-row mobile:flex-col mobile:w-full items-center">
         <div
           id="btnPass"
           className="border-2 mr-4 flex flex-col mb-8 justify-center items-center rounded-xl w-48 text-center p-4 text-2xl"
