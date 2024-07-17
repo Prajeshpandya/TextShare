@@ -8,6 +8,9 @@ export default function RichText() {
   const editRef = useRef();
   const formatDataRef = useRef();
   const [html, setHtml] = useState("");
+  const [customUrl, setCustomUrl] = useState("");
+  const [expiresAt, setExpiresAt] = useState("");
+  const [showCustom, setShowCustom] = useState(false);
 
   const {
     isLoading,
@@ -43,6 +46,14 @@ export default function RichText() {
 
       if (_id) {
         baseQuery._id = _id;
+      }
+
+      if (customUrl) {
+        baseQuery.customUrl = customUrl;
+      }
+
+      if (expiresAt) {
+        baseQuery.expiresAt = expiresAt;
       }
 
       const data = await sendData(baseQuery);
@@ -101,7 +112,32 @@ export default function RichText() {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-
+      <button
+        className="bg-gray-500 text-white mt-5 mb-5  p-4 rounded-lg w-44 hover:opacity-50 "
+        onClick={() => setShowCustom(!showCustom)}
+      >
+        {showCustom ? "Hide" : "Advance Features"}
+      </button>
+      {showCustom && (
+        <div>
+          <input
+            onChange={(e) => setCustomUrl(e.target.value)}
+            value={customUrl}
+            type="text"
+            className="font-serif text-white p-4 border border-gray-500-600  w-96 "
+            placeholder="Enter the CutomUrl if you want to specify"
+            required
+          />
+          <input
+            onChange={(e) => setExpiresAt(e.target.value)}
+            value={expiresAt}
+            type="datetime-local"
+            className="font-serif text-white p-4 border border-gray-500-600  w-96 "
+            placeholder="Enter the CutomUrl if you want to specify"
+            required
+          />
+        </div>
+      )}
       <div
         ref={formatDataRef}
         dangerouslySetInnerHTML={{
