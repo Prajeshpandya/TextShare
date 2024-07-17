@@ -79,7 +79,7 @@ export default function RichText() {
     }
   };
 
-  const size = isMobile ? 2 : 0.5;
+  const size = isMobile ? 1 : 0.5;
   return (
     <div className="flex mobile:w-full flex-col items-center mt-5">
       <Editor
