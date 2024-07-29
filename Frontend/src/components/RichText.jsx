@@ -65,9 +65,14 @@ export default function RichText() {
 
       setData(data.data);
       setRefresh((prev) => !prev);
-      if (userData.length > 1) {
+      if (userData.length > 0) {
+        console.log("Scroll Working");
         passwordRef.current.scrollIntoView({ behavior: "smooth" });
       }
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth",
+      });
       toast.success(data.message || "Data sent successfully");
       console.log("formattedData : " + formatDataRef.current.innerText);
     } catch (error) {
@@ -94,11 +99,10 @@ export default function RichText() {
     };
   }, [customUrl, expiresAt, userData, setIsLoading, setData, setRefresh]);
 
-
   const addEditorKeydownListener = (editor) => {
-    editor.on('keydown', (e) => {
+    editor.on("keydown", (e) => {
       console.log("Editor keydown event detected:", e); // Debugging
-      if (e.ctrlKey && e.key === 'q') {
+      if (e.ctrlKey && e.key === "q") {
         e.preventDefault(); // Prevent default behavior of Ctrl+K
         sendDataHandler();
       }
@@ -106,7 +110,6 @@ export default function RichText() {
   };
 
   const width = isMobile ? 0.8 : 0.5;
-  
 
   return (
     <div className="flex mobile:w-full flex-col items-center mt-5">
@@ -115,7 +118,7 @@ export default function RichText() {
         apiKey="03wg5i7qqzyeiw40en1l0b18mt1kyp3c0bbf399z8y5d25tm"
         onInit={(_evt, editor) => {
           editRef.current = editor;
-          addEditorKeydownListener(editor)
+          addEditorKeydownListener(editor);
         }}
         init={{
           height: 0.5 * window.innerHeight,
