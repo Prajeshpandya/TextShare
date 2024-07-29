@@ -95,6 +95,16 @@ export default function RichText() {
   }, [customUrl, expiresAt, userData, setIsLoading, setData, setRefresh]);
 
 
+  const addEditorKeydownListener = (editor) => {
+    editor.on('keydown', (e) => {
+      console.log("Editor keydown event detected:", e); // Debugging
+      if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault(); // Prevent default behavior of Ctrl+K
+        sendDataHandler();
+      }
+    });
+  };
+
   const width = isMobile ? 0.8 : 0.5;
   
 
@@ -105,6 +115,7 @@ export default function RichText() {
         apiKey="03wg5i7qqzyeiw40en1l0b18mt1kyp3c0bbf399z8y5d25tm"
         onInit={(_evt, editor) => {
           editRef.current = editor;
+          addEditorKeydownListener(editor)
         }}
         init={{
           height: 0.5 * window.innerHeight,
