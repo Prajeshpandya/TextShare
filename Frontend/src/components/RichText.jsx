@@ -98,7 +98,7 @@ export default function RichText() {
   const addEditorKeydownListener = (editor) => {
     editor.on('keydown', (e) => {
       console.log("Editor keydown event detected:", e); // Debugging
-      if (e.ctrlKey && e.key === 'k') {
+      if (e.ctrlKey && e.key === 'q') {
         e.preventDefault(); // Prevent default behavior of Ctrl+K
         sendDataHandler();
       }
