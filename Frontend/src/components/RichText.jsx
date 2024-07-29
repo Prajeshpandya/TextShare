@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Editor } from "@tinymce/tinymce-react";
 import { sendData } from "../apis/SendData";
 import toast from "react-hot-toast";
@@ -24,8 +24,8 @@ export default function RichText() {
     setRefresh,
   } = useContext(Context);
 
-  const sendDataHandler = async (e) => {
-    e.preventDefault();
+  const sendDataHandler = async () => {
+    // e.preventDefault();
     if (!editRef.current || !editRef.current.getContent().trim()) {
       toast.error("Please Add Some Text!");
       return;
@@ -78,6 +78,22 @@ export default function RichText() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      console.log("Keydown event detected:", e); // Debugging
+      if (e.ctrlKey && e.key === "q") {
+        e.preventDefault(); // Prevent default behavior of Ctrl+K
+        sendDataHandler();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [customUrl, expiresAt, userData, setIsLoading, setData, setRefresh]);
+
 
   const width = isMobile ? 0.8 : 0.5;
   
